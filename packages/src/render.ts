@@ -34,6 +34,8 @@ const seoPrerender = async (config: any) => {
       await page.evaluate((scriptContent) => {
         const script = document.createElement('script');
         script.textContent = scriptContent;
+        // 添加特殊属性标记
+        script.setAttribute('data-prerender', 'true');
         document.head.appendChild(script);
       }, config.injectScript);
     }
@@ -50,6 +52,8 @@ const seoPrerender = async (config: any) => {
     if (config.callback) {
       content = config.callback(content, item) || content
     }
+    // ✅ 精准删除带 data-prerender 属性的 <script> 标签
+    content = content.replace(/<script[^>]*data-prerender="true"[^>]*>[\s\S]*?<\/script>/gi, '');
 
     if (item.indexOf('?') !== -1) {
       console.log(`${logTip} ${item} is error, unexpected ?`)
