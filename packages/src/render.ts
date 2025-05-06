@@ -18,10 +18,9 @@ const seoPrerender = async (config: any) => {
 
   // 👇 在页面加载前注入脚本（关键修改）
   if (config.injectScript) {
-    await page.addInitScript({
-      content: config.injectScript,
-      type: 'module',
-    });
+    await page.evaluateOnNewDocument((scriptContent) => {
+      eval(scriptContent);
+    }, config.injectScript);
   }
 
   for (const item of config.routes) {
