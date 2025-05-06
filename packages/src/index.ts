@@ -22,6 +22,7 @@ export interface Config {
   scss?: Scss[],
   hashHistory?:boolean // 路由模式，使用hash模式时需设置为true
   delay?:number // 延时等待时间，默认500ms。确保页面加载完成
+  injectScript?: string // 注入脚本
 }
 
 const getPublicHtml = (publicHtml: boolean | string[]) => {
