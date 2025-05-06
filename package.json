@@ -1,6 +1,6 @@
 {
   "name": "luykin-vite-plugin-seo-prerender",
-  "private": false,
+  "private": true,
   "version": "0.6.0",
   "type": "module",
   "scripts": {

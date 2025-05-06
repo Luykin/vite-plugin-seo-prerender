@@ -1,9 +1,9 @@
 {
-  "name": "vite-plugin-seo-prerender",
-  "version": "0.5.0",
+  "name": "luykin-vite-plugin-seo-prerender",
+  "version": "0.7.0",
   "description": "`vite-plugin-seo-prerender` 插件是一个用于 `Vite` 构建工具的预渲染插件，它可以将你的单页面应用 (SPA) 在构建时静态预渲染为 HTML 文件，以提高首次加载速度和SEO友好性。适用于对站点少量页面生成静态HTML。支持 `Vue、React`等所有框架",
   "license": "MIT",
-  "author": "337547038",
+  "author": "luykin",
   "keywords": [
     "prerender",
     "seo",
@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/337547038/vite-plugin-seo-prerender.git",
+    "url": "https://github.com/Luykin/vite-plugin-seo-prerender",
     "directory": "packages"
   },
   "publishConfig": {
@@ -24,9 +24,9 @@
     "registry": "https://registry.npmjs.org"
   },
   "bugs": {
-    "url": "https://github.com/337547038/vite-plugin-seo-prerender/issues"
+    "url": "https://github.com/Luykin/vite-plugin-seo-prerender/issues"
   },
-  "homepage": "https://github.com/337547038/vite-plugin-seo-prerender",
+  "homepage": "https://github.com/Luykin/vite-plugin-seo-prerender",
   "files": [
     "dist"
   ],
