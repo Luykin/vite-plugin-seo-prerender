@@ -16,6 +16,14 @@ const seoPrerender = async (config: any) => {
     network = { waitUntil: 'networkidle0' }
   }
 
+  // 👇 在页面加载前注入脚本（关键修改）
+  if (config.injectScript) {
+    await page.addInitScript({
+      content: config.injectScript,
+      type: 'module',
+    });
+  }
+
   for (const item of config.routes) {
     let pageUrl: string = config.local + item
     if (config.hashHistory) {
@@ -27,17 +35,6 @@ const seoPrerender = async (config: any) => {
     await page.waitForSelector('body')
     if (config.delay) {
       await delay(config.delay)
-    }
-
-    // 👇 注入脚本：添加 window.__PRERENDERED__ 标记
-    if (config.injectScript) {
-      await page.evaluate((scriptContent) => {
-        const script = document.createElement('script');
-        script.textContent = scriptContent;
-        // 添加特殊属性标记
-        script.setAttribute('data-prerender', 'true');
-        document.head.appendChild(script);
-      }, config.injectScript);
     }
 
     let content: string = await page.content()
@@ -52,8 +49,6 @@ const seoPrerender = async (config: any) => {
     if (config.callback) {
       content = config.callback(content, item) || content
     }
-    // ✅ 精准删除带 data-prerender 属性的 <script> 标签
-    content = content.replace(/<script[^>]*data-prerender="true"[^>]*>[\s\S]*?<\/script>/gi, '');
 
     if (item.indexOf('?') !== -1) {
       console.log(`${logTip} ${item} is error, unexpected ?`)
